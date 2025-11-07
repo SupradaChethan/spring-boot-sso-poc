@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Spring Boot SSO POC</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0078d4;
+            margin-bottom: 20px;
+        }
+        .user-info {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .info-row {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: bold;
+            color: #555;
+            display: inline-block;
+            width: 150px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px 5px 10px 0;
+            background-color: #0078d4;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #005a9e;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, <span th:text="${name}">User</span>!</h1>
+        <p>You have successfully authenticated with your Microsoft Office 365 account.</p>
+
+        <div class="user-info">
+            <h2>Your Profile Information</h2>
+            <div class="info-row">
+                <span class="label">Username:</span>
+                <span th:text="${username}">user@example.com</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Name:</span>
+                <span th:text="${name}">Full Name</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Email:</span>
+                <span th:text="${email}">email@example.com</span>
+            </div>
+        </div>
+
+        <h3>API Endpoints</h3>
+        <p>You can also access your information via REST API:</p>
+        <ul>
+            <li><a href="/api/user/me">/api/user/me</a> - Get current user information</li>
+            <li><a href="/api/user/attributes">/api/user/attributes</a> - Get all user attributes</li>
+        </ul>
+
+        <form th:action="@{/logout}" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-secondary">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
